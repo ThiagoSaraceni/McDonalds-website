@@ -1,8 +1,9 @@
-import { ConsumptionMethod } from "@prisma/client";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { getRestaurantBySlug } from "@/data/get-restaurant-by-slug";
+
+import { RestaurantCategories } from "./components/categories";
+import { RestaurantHeader } from "./components/header";
 
 interface RestaurantMenuPageProps {
   params: Promise<{ slug: string }>;
@@ -21,6 +22,7 @@ const RestaurantMenuPage = async ({
   const { consumptionMethod } = await searchParams;
 
   const restaurant = await getRestaurantBySlug(slug);
+
   if (!restaurant) {
     return notFound();
   }
@@ -31,15 +33,8 @@ const RestaurantMenuPage = async ({
 
   return (
     <>
-      <div className="relative h-[250px] w-full">
-        <Image
-          src={restaurant?.coverImageUrl}
-          fill
-          alt={restaurant?.name}
-          className="object-cover"
-        />
-      </div>
-      <h1>oi</h1>
+      <RestaurantHeader restaurant={restaurant} />
+      <RestaurantCategories restaurant={restaurant} />
     </>
   );
 };
