@@ -61,7 +61,7 @@ export const RestaurantCategories = ({
         </div>
       </div>
 
-      <ScrollArea className="w-full">
+      <ScrollArea className="w-full pb-4">
         <div className="flex w-max space-x-4 px-4 pt-0">
           {restaurant.menuCategories.map((category) => (
             <>
