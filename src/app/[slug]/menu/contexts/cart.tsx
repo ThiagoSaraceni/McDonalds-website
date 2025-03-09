@@ -28,9 +28,30 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const toggleCart = () => {
     setIsOpen((prevState) => !prevState);
   };
-
+  
+  
+  
   const addProduct = (product: CartProduct) => {
-    setProducts(prev => [...prev, product])
+    //verificar se o produto já está no carrinho
+    // se estiver, aumente a sua quantidade
+    // se nao estiver, adicione
+    const productIsAlredyOnTheCart = products.some(prevProduct => prevProduct.id === product.id)
+    
+      if(!productIsAlredyOnTheCart){
+        return setProducts((prev) => [...prev, product])
+      }
+
+      setProducts(prevProducts => {
+        return prevProducts.map((prevProduct) => {
+          if(prevProduct.id === product.id){
+            return {
+              ...prevProduct,
+              quantity: prevProduct.quantity + product.quantity
+            }
+          }
+          return prevProduct
+        })
+      })
   }
 
   return (
