@@ -1,10 +1,6 @@
-import { ChevronLeftIcon, ChevronRightCircle } from "lucide-react";
-import Image from "next/image";
 import { useContext } from "react";
 
-import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { formatCurrency } from "@/helpers/format-currency";
 
 import { CartProductItem } from "../../components/cart-product.item";
 import { CartContext } from "../../contexts/cart";
