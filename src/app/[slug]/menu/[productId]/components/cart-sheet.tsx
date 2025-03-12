@@ -1,26 +1,27 @@
-import { useContext } from "react"
+import { ChevronLeftIcon, ChevronRightCircle } from "lucide-react";
+import Image from "next/image";
+import { useContext } from "react";
 
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet"
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { formatCurrency } from "@/helpers/format-currency";
 
-import { CartContext } from "../../contexts/cart"
+import { CartProductItem } from "../../components/cart-product.item";
+import { CartContext } from "../../contexts/cart";
 
 export const CartSheet = () => {
   const { isOpen, toggleCart, products } = useContext(CartContext);
-    
-    return(
-        <Sheet open={isOpen} onOpenChange={toggleCart}>
-        <SheetContent className="w-[400px] sm:w-[540px]">
-          <SheetHeader>
-            <SheetTitle>Are you absolutely sure?</SheetTitle>
-            <SheetDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </SheetDescription>
-          </SheetHeader>
-          {products.map((product) => (
-            <h1 key={product.id}>{product.name} - {product.quantity}</h1>
-          ))}
-        </SheetContent>
-      </Sheet>
-    )
-}
+
+  return (
+    <Sheet open={isOpen} onOpenChange={toggleCart}>
+      <SheetContent className="w-[80%]">
+        <SheetHeader>
+          <SheetTitle className="text-left">Sacola</SheetTitle>
+        </SheetHeader>
+        {products.map((product) => (
+          <CartProductItem product={product} key={product.id} />
+        ))}
+      </SheetContent>
+    </Sheet>
+  );
+};
