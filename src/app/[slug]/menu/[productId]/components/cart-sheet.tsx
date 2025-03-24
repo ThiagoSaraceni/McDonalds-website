@@ -11,6 +11,7 @@ import {
 import { formatCurrency } from "@/helpers/format-currency";
 
 import { CartProductItem } from "../../components/cart-product.item";
+import { FinishOrderButton } from "../../components/finish-order-button";
 import { CartContext } from "../../contexts/cart";
 
 export const CartSheet = () => {
@@ -36,7 +37,7 @@ export const CartSheet = () => {
               </div>
             </CardContent>
           </Card>
-          <Button className="w-full rounded-full">Finalizar pedido</Button>
+          <FinishOrderButton />
         </div>
       </SheetContent>
     </Sheet>
